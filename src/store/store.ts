@@ -1,18 +1,11 @@
 import { combineReducers } from 'redux';
 import { configureStore } from '@reduxjs/toolkit';
 import postsSlice from './reducers/postsSlice';
-// import { storage, storageSetItem } from '../utils/storage';
-// import currentWeatherSlice from './reducers/currentWeatherSlice';
-// import favoriteCitiesSlice from './reducers/favoriteCitiesSlice';
-// import forecastWeatherSlice from './reducers/forecastWeatherSlice';
-// import statisticsSlice from './reducers/statisticsSlice';
+import usersSlice from './reducers/usersSlice';
 
 export const rootReducer = combineReducers({
-  postsSlice
-  // currentWeatherSlice,
-  // favoriteCitiesSlice,
-  // forecastWeatherSlice,
-  // statisticsSlice
+  postsSlice,
+  usersSlice
 });
 
 export const store = configureStore({

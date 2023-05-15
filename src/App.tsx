@@ -8,12 +8,14 @@ import { ROUTES } from './routes/routes';
 import UsersPage from './pages/UsersPage';
 import SettingsPage from './pages/SettingsPage';
 import PostsPage from './pages/PostsPage';
+import { getUsers } from './store/reducers/usersSlice';
 
 function App() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(getPosts());
+    dispatch(getUsers());
   }, [dispatch]);
 
   return (

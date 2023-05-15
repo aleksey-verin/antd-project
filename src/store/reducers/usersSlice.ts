@@ -3,35 +3,33 @@ import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 // import { IForecastWeatherNormalized } from '../../types/forecastType';
 
 import { AppDispatch, IRootState } from '../store';
-import { IPost } from './postsTypes';
-import { getPostsRequest } from '../../utils/api-helpers';
+import { IUsers } from './usersTypes';
 // import { createUrlWeather, urlWeatherTypes } from '../../utils/api-helpers';
 
 interface initialStateTypes {
-  posts: IPost[];
+  users: IUsers[];
   isLoading: boolean;
   isSuccess: boolean;
   isError: boolean;
 }
 
 const initialState = {
-  posts: [],
+  users: [],
   isLoading: false,
   isSuccess: false,
   isError: false
 };
 
-export const getPosts = createAsyncThunk<
-  IPost[],
-  string | void,
+export const getUsers = createAsyncThunk<
+  IUsers[],
+  void,
   {
     dispatch: AppDispatch;
     state: IRootState;
   }
->('getPosts', async (params, thunkAPI) => {
-  // const url = 'https://jsonplaceholder.typicode.com/posts';
+>('getUsers', async (_, thunkAPI) => {
+  const url = 'https://jsonplaceholder.typicode.com/users';
   try {
-    const url = getPostsRequest(params);
     const response = await fetch(url);
     if (response.ok) {
       const data = await response.json();
@@ -46,28 +44,28 @@ export const getPosts = createAsyncThunk<
   }
 });
 
-export const postsSlice = createSlice({
-  name: 'postsSlice',
+export const usersSlice = createSlice({
+  name: 'usersSlice',
   initialState: initialState as initialStateTypes,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getPosts.pending, (state) => {
+    builder.addCase(getUsers.pending, (state) => {
       state.isLoading = true;
       state.isSuccess = false;
       state.isError = false;
     });
-    builder.addCase(getPosts.fulfilled, (state, { payload }: PayloadAction<IPost[]>) => {
-      state.posts = payload;
+    builder.addCase(getUsers.fulfilled, (state, { payload }: PayloadAction<IUsers[]>) => {
+      state.users = payload;
       state.isLoading = false;
       state.isSuccess = true;
     });
-    builder.addCase(getPosts.rejected, (state) => {
+    builder.addCase(getUsers.rejected, (state) => {
       state.isLoading = false;
       state.isError = true;
     });
   }
 });
 
-export const selectorPostsSlice = (state: IRootState) => state.postsSlice;
+export const selectorUsersSlice = (state: IRootState) => state.usersSlice;
 
-export default postsSlice.reducer;
+export default usersSlice.reducer;
