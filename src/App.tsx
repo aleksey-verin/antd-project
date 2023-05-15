@@ -9,6 +9,7 @@ import UsersPage from './pages/UsersPage';
 import SettingsPage from './pages/SettingsPage';
 import PostsPage from './pages/PostsPage';
 import { getUsers } from './store/reducers/usersSlice';
+import PostPage from './pages/PostPage';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -24,6 +25,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route element={<PostsPage />} path={ROUTES.POSTS_ROUTE} />
+          <Route element={<PostPage />} path={ROUTES.POST_SINGLE_ROUTE} />
           <Route element={<UsersPage />} path={ROUTES.USERS_ROUTE} />
           <Route element={<SettingsPage />} path={ROUTES.SETTINGS_ROUTE} />
           <Route path="*" element={<Navigate replace to={ROUTES.POSTS_ROUTE} />} />
