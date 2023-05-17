@@ -3,9 +3,22 @@ import { useSelector } from 'react-redux';
 import { getPosts, selectorPostsSlice } from '../store/reducers/postsSlice';
 import { selectorUsersSlice } from '../store/reducers/usersSlice';
 import { useAppDispatch } from '../hooks/redux';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useNavigation, useParams } from 'react-router-dom';
 import { ROUTES } from '../routes/routes';
 import { toast } from 'react-hot-toast';
+import ContainerContent from '../components/ContainerContent';
+import { Button, Card, Col, Layout, Row, Select, Typography } from 'antd';
+
+const { Title } = Typography;
+
+const breadcrumbItems = [
+  {
+    title: <Link to="/">Home</Link>
+  },
+  {
+    title: 'Posts'
+  }
+];
 
 interface PostsPageProps {}
 
@@ -14,11 +27,7 @@ const PostsPage: FC<PostsPageProps> = () => {
   const { posts, isError } = useSelector(selectorPostsSlice);
   const { users } = useSelector(selectorUsersSlice);
 
-  const [selectValue, setSelectValue] = useState('all');
-
-  const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = e.target.value;
-    setSelectValue(value);
+  const handleSelect = (value: string) => {
     dispatch(getPosts(value));
   };
   useEffect(() => {
@@ -30,28 +39,55 @@ const PostsPage: FC<PostsPageProps> = () => {
 
   if (isError) return <div>Ошибка</div>;
 
+  const selectValues = users.map(({ id, name }) => ({
+    value: id,
+    label: name
+  }));
+
   return (
-    <div>
-      <div>
-        <label>
-          Choose user:
-          <select name="user" id="user" value={selectValue} onChange={handleSelect}>
-            <option value="none">-----</option>
-            {users.map(({ id, name }) => (
-              <option key={id} value={id}>
-                {name}
-              </option>
-            ))}
-          </select>
-        </label>
-      </div>
-      {posts.map((post) => (
-        <div key={post.id}>
-          <div>{`${post.id} ${post.userId} ${post.title} ${post.body}`}</div>
-          <Link to={`${ROUTES.POSTS_ROUTE}/${post.id}`}>Подробнее</Link>
-        </div>
-      ))}
-    </div>
+    <ContainerContent breadcrumbItems={breadcrumbItems}>
+      <Row>
+        <Col
+          span={24}
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: 20,
+            marginBottom: 20
+          }}>
+          <Title style={{ marginBottom: 0 }} level={4}>
+            Select or type the author of posts:
+          </Title>
+          <Select
+            style={{ width: 220 }}
+            showSearch
+            placeholder="Select or type the author.."
+            optionFilterProp="children"
+            onChange={handleSelect}
+            allowClear
+            filterOption={(input, option) =>
+              (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+            }
+            options={selectValues}
+          />
+        </Col>
+      </Row>
+
+      <Row gutter={[16, 16]}>
+        {posts.map(({ id, userId, title, body }) => (
+          <Col span={8} key={id}>
+            <Card
+              title={title}
+              extra={<Link to={`${ROUTES.POSTS_ROUTE}/${id}`}>More details..</Link>}
+              style={{ width: 'auto', height: '100%' }}>
+              <p>{`Author: ${users.find((user) => user.id === userId)?.name}`}</p>
+              <p>{body}</p>
+            </Card>
+          </Col>
+        ))}
+      </Row>
+    </ContainerContent>
   );
 };
 

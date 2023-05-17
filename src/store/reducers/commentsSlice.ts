@@ -6,6 +6,7 @@ import { IComment, IUserNewComment } from './commentsTypes';
 interface initialStateTypes {
   comments: IComment[];
   isLoading: boolean;
+  isLoadingComment: boolean;
   isSuccess: boolean;
   isError: boolean;
 }
@@ -13,6 +14,7 @@ interface initialStateTypes {
 const initialState = {
   comments: [],
   isLoading: false,
+  isLoadingComment: false,
   isSuccess: false,
   isError: false
 };
@@ -104,16 +106,19 @@ export const commentsSlice = createSlice({
     });
     builder.addCase(postNewComment.pending, (state) => {
       state.isLoading = true;
+      state.isLoadingComment = true;
       state.isSuccess = false;
       state.isError = false;
     });
     builder.addCase(postNewComment.fulfilled, (state, { payload }: PayloadAction<IComment>) => {
       state.comments.push({ ...payload, postId: Number(payload.postId) });
       state.isLoading = false;
+      state.isLoadingComment = false;
       state.isSuccess = true;
     });
     builder.addCase(postNewComment.rejected, (state) => {
       state.isLoading = false;
+      state.isLoadingComment = false;
       state.isError = true;
     });
   }

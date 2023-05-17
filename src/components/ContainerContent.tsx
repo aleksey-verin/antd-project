@@ -4,20 +4,18 @@ import { FC, ReactNode } from 'react';
 
 interface ContainerContentProps {
   children: ReactNode;
+  breadcrumbItems: Array<{ title: string | ReactNode }>;
 }
 
-const ContainerContent: FC<ContainerContentProps> = ({ children }) => {
+const ContainerContent: FC<ContainerContentProps> = ({ children, breadcrumbItems }) => {
   const {
     token: { colorBgContainer }
   } = theme.useToken();
 
   return (
     <Content className="site-layout" style={{ padding: '0 50px' }}>
-      <Breadcrumb style={{ margin: '16px 0' }}>
-        <Breadcrumb.Item>Home</Breadcrumb.Item>
-        <Breadcrumb.Item>List</Breadcrumb.Item>
-        <Breadcrumb.Item>App</Breadcrumb.Item>
-      </Breadcrumb>
+      <Breadcrumb style={{ margin: '16px 0' }} items={breadcrumbItems} />
+
       <div style={{ padding: 24, minHeight: 380, background: colorBgContainer }}>{children}</div>
     </Content>
   );

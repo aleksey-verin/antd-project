@@ -9,7 +9,7 @@ interface ProviderNotificationProps {
 const ProviderNotification: FC<ProviderNotificationProps> = ({ children }) => {
   return (
     <>
-      <Toaster position="top-center" reverseOrder={false} />
+      <Toaster position="top-center" reverseOrder={false} containerStyle={{ inset: 9 }} />
       {children}
     </>
   );

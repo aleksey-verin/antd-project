@@ -1,5 +1,16 @@
 import { FC, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
+import ContainerContent from '../components/ContainerContent';
+import { Link } from 'react-router-dom';
+
+const breadcrumbItems = [
+  {
+    title: <Link to="/">Home</Link>
+  },
+  {
+    title: 'Users'
+  }
+];
 
 interface UsersPageProps {}
 
@@ -11,7 +22,11 @@ const UsersPage: FC<UsersPageProps> = () => {
     });
   }, []);
 
-  return <div>usersPage</div>;
+  return (
+    <ContainerContent breadcrumbItems={breadcrumbItems}>
+      <div>usersPage</div>
+    </ContainerContent>
+  );
 };
 
 export default UsersPage;
