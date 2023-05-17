@@ -10,6 +10,7 @@ import SettingsPage from './pages/SettingsPage';
 import PostsPage from './pages/PostsPage';
 import { getUsers } from './store/reducers/usersSlice';
 import PostPage from './pages/PostPage';
+import { toast } from 'react-hot-toast';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -17,6 +18,7 @@ function App() {
   useEffect(() => {
     dispatch(getPosts());
     dispatch(getUsers());
+    toast.success('Welcome!');
   }, [dispatch]);
 
   return (
