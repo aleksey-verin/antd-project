@@ -2,10 +2,12 @@ import { combineReducers } from 'redux';
 import { configureStore } from '@reduxjs/toolkit';
 import postsSlice from './reducers/postsSlice';
 import usersSlice from './reducers/usersSlice';
+import commentsSlice from './reducers/commentsSlice';
 
 export const rootReducer = combineReducers({
   postsSlice,
-  usersSlice
+  usersSlice,
+  commentsSlice
 });
 
 export const store = configureStore({

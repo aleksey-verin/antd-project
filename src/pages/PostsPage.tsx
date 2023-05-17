@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import { getPosts, selectorPostsSlice } from '../store/reducers/postsSlice';
 import { selectorUsersSlice } from '../store/reducers/usersSlice';
 import { useAppDispatch } from '../hooks/redux';
+import { Link } from 'react-router-dom';
+import { ROUTES } from '../routes/routes';
 
 interface PostsPageProps {}
 
@@ -37,7 +39,10 @@ const PostsPage: FC<PostsPageProps> = () => {
         </label>
       </div>
       {posts.map((post) => (
-        <div key={post.id}>{`${post.id} ${post.userId} ${post.title} ${post.body}`}</div>
+        <div key={post.id}>
+          <div>{`${post.id} ${post.userId} ${post.title} ${post.body}`}</div>
+          <Link to={`${ROUTES.POSTS_ROUTE}/${post.id}`}>Подробнее</Link>
+        </div>
       ))}
     </div>
   );

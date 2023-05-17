@@ -6,3 +6,7 @@ export const getPostsUrl = (userId: string | void): URL => {
   }
   return _url;
 };
+
+export const getCommentsUrl = (postId: string | number): string => {
+  return `https://jsonplaceholder.typicode.com/posts/${postId}/comments`;
+};
