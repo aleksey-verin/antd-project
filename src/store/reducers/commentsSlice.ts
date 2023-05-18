@@ -1,7 +1,7 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AppDispatch, IRootState } from '../store';
 import { getCommentsUrl } from '../../utils/api-helpers';
-import { IComment, IUserNewComment } from './commentsTypes';
+import { IComment, IUserNewComment } from './types/commentsTypes';
 
 interface initialStateTypes {
   comments: IComment[];

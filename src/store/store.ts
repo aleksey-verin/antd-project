@@ -3,25 +3,22 @@ import { configureStore } from '@reduxjs/toolkit';
 import postsSlice from './reducers/postsSlice';
 import usersSlice from './reducers/usersSlice';
 import commentsSlice from './reducers/commentsSlice';
+import themeSlice from './reducers/themeSlice';
+import { storage, storageSetItem } from '../utils/storage';
 
 export const rootReducer = combineReducers({
   postsSlice,
   usersSlice,
-  commentsSlice
+  commentsSlice,
+  themeSlice
 });
 
 export const store = configureStore({
   reducer: rootReducer
-  // middleware: (getDefaultMiddleware) =>
-  //   getDefaultMiddleware({
-  //     serializableCheck: false
-  //   })
 });
 
 store.subscribe(() => {
-  // storageSetItem(storage.weatherStats, store.getState().statisticsSlice);
-  // storageSetItem(storage.weatherFavoriteList, store.getState().favoriteCitiesSlice);
-  // storageSetItem(storage.weatherCurrentCity, store.getState().currentWeatherSlice.currentCity);
+  storageSetItem(storage.theme, store.getState().themeSlice);
 });
 
 export type IRootState = ReturnType<typeof store.getState>;

@@ -1,7 +1,5 @@
 export const storage = {
-  weatherStats: 'weather-stats',
-  weatherFavoriteList: 'weatherFavoriteList',
-  weatherCurrentCity: 'weatherCurrentCity'
+  theme: 'posts-app-theme'
 };
 
 export const storageGetItem = (storageItem: string) => {

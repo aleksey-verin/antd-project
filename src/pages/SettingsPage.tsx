@@ -1,7 +1,16 @@
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import ContainerContent from '../components/ContainerContent';
 import { Link } from 'react-router-dom';
+import { Descriptions, Switch } from 'antd';
+import useSelection from 'antd/es/table/hooks/useSelection';
+import themeSlice, {
+  selectorThemeSlice,
+  setThemeDark,
+  setThemeLight
+} from '../store/reducers/themeSlice';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from '../hooks/redux';
 
 const breadcrumbItems = [
   {
@@ -15,6 +24,13 @@ const breadcrumbItems = [
 interface SettingsPageProps {}
 
 const SettingsPage: FC<SettingsPageProps> = () => {
+  const dispatch = useAppDispatch();
+  const { isThemeLight } = useSelector(selectorThemeSlice);
+
+  // const bla = false;
+
+  const [themeSwitchValue, setThemeSwitchValue] = useState(isThemeLight);
+
   useEffect(() => {
     toast('You on Settings Page!', {
       duration: 1000,
@@ -22,9 +38,33 @@ const SettingsPage: FC<SettingsPageProps> = () => {
     });
   }, []);
 
+  const handleThemeSwitch = (value: boolean) => {
+    console.log(value);
+    if (value) {
+      console.log('light');
+      setThemeSwitchValue(true);
+      dispatch(setThemeLight());
+    } else {
+      console.log('dark');
+      setThemeSwitchValue(false);
+      dispatch(setThemeDark());
+    }
+  };
+
   return (
     <ContainerContent breadcrumbItems={breadcrumbItems}>
-      <div>usersPage</div>
+      <Descriptions title="User settings" bordered>
+        <Descriptions.Item label="Theme mode">
+          <Switch
+            onChange={handleThemeSwitch}
+            checkedChildren="Light theme ☀️"
+            unCheckedChildren="Dark theme 🌙"
+            defaultChecked={themeSwitchValue}
+            // checked={themeSwitchValue}
+          />
+        </Descriptions.Item>
+        {/* <Descriptions.Item label="Theme mode">theme</Descriptions.Item> */}
+      </Descriptions>
     </ContainerContent>
   );
 };

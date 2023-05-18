@@ -14,7 +14,7 @@ import {
 import { toast } from 'react-hot-toast';
 import ContainerContent from '../components/ContainerContent';
 import { Link } from 'react-router-dom';
-import { Row, Col, Card, Descriptions, Button, Input, Form } from 'antd';
+import { Row, Col, Card, Descriptions, Button, Input, Form, Skeleton } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
 import Title from 'antd/es/typography/Title';
 
@@ -36,7 +36,7 @@ const PostPage: FC<PostPageProps> = () => {
   const dispatch = useAppDispatch();
   const { posts } = useSelector(selectorPostsSlice);
   const { users } = useSelector(selectorUsersSlice);
-  const { comments, isLoadingComment } = useSelector(selectorCommentsSlice);
+  const { comments, isLoading, isLoadingComment } = useSelector(selectorCommentsSlice);
 
   const { id } = useParams();
 
@@ -109,13 +109,15 @@ const PostPage: FC<PostPageProps> = () => {
           </Card>
         </Col>
       </Row>
-      <Descriptions title="Comments:" bordered>
-        {comments.map(({ id, name, body, email }) => (
-          <Descriptions.Item key={id} span={3} label={`${name} (${email})`}>
-            {body}
-          </Descriptions.Item>
-        ))}
-      </Descriptions>
+      <Skeleton loading={isLoading} active>
+        <Descriptions title="Comments:" bordered>
+          {comments.map(({ id, name, body, email }) => (
+            <Descriptions.Item key={id} span={3} label={`${name} (${email})`}>
+              {body}
+            </Descriptions.Item>
+          ))}
+        </Descriptions>
+      </Skeleton>
       <div>
         <Title style={{ margin: '20px 0', textAlign: 'center' }} level={5}>
           Add a new comment:

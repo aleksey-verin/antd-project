@@ -2,6 +2,10 @@ import { FC, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 import ContainerContent from '../components/ContainerContent';
 import { Link } from 'react-router-dom';
+import { Row, Col, Card, Skeleton } from 'antd';
+import { ROUTES } from '../routes/routes';
+import { useSelector } from 'react-redux';
+import { selectorUsersSlice } from '../store/reducers/usersSlice';
 
 const breadcrumbItems = [
   {
@@ -15,6 +19,8 @@ const breadcrumbItems = [
 interface UsersPageProps {}
 
 const UsersPage: FC<UsersPageProps> = () => {
+  const { users, isLoading } = useSelector(selectorUsersSlice);
+
   useEffect(() => {
     toast('You on Users Page!', {
       duration: 1000,
@@ -24,7 +30,22 @@ const UsersPage: FC<UsersPageProps> = () => {
 
   return (
     <ContainerContent breadcrumbItems={breadcrumbItems}>
-      <div>usersPage</div>
+      <Row gutter={[16, 16]}>
+        <Skeleton loading={isLoading} active>
+          {users.map(({ id, name, email, username }) => (
+            <Col span={6} key={id}>
+              <Card
+                title={name}
+                extra={<Link to={`${ROUTES.USERS_ROUTE}/${id}`}>More details..</Link>}
+                style={{ width: 'auto', height: '100%' }}>
+                <p>{`Username: ${username}`}</p>
+                <p>{`Email: ${email}`}</p>
+                {/* <p>{body}</p> */}
+              </Card>
+            </Col>
+          ))}
+        </Skeleton>
+      </Row>
     </ContainerContent>
   );
 };

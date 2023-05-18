@@ -3,7 +3,7 @@ import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 // import { IForecastWeatherNormalized } from '../../types/forecastType';
 
 import { AppDispatch, IRootState } from '../store';
-import { IUsers } from './usersTypes';
+import { IUsers } from './types/usersTypes';
 // import { createUrlWeather, urlWeatherTypes } from '../../utils/api-helpers';
 
 interface initialStateTypes {

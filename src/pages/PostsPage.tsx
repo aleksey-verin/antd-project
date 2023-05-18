@@ -7,7 +7,7 @@ import { Link, useLocation, useNavigate, useNavigation, useParams } from 'react-
 import { ROUTES } from '../routes/routes';
 import { toast } from 'react-hot-toast';
 import ContainerContent from '../components/ContainerContent';
-import { Button, Card, Col, Layout, Row, Select, Typography } from 'antd';
+import { Button, Card, Col, Layout, Row, Select, Skeleton, Typography } from 'antd';
 
 const { Title } = Typography;
 
@@ -24,7 +24,7 @@ interface PostsPageProps {}
 
 const PostsPage: FC<PostsPageProps> = () => {
   const dispatch = useAppDispatch();
-  const { posts, isError } = useSelector(selectorPostsSlice);
+  const { posts, isError, isLoading } = useSelector(selectorPostsSlice);
   const { users } = useSelector(selectorUsersSlice);
 
   const handleSelect = (value: string) => {
@@ -75,17 +75,19 @@ const PostsPage: FC<PostsPageProps> = () => {
       </Row>
 
       <Row gutter={[16, 16]}>
-        {posts.map(({ id, userId, title, body }) => (
-          <Col span={8} key={id}>
-            <Card
-              title={title}
-              extra={<Link to={`${ROUTES.POSTS_ROUTE}/${id}`}>More details..</Link>}
-              style={{ width: 'auto', height: '100%' }}>
-              <p>{`Author: ${users.find((user) => user.id === userId)?.name}`}</p>
-              <p>{body}</p>
-            </Card>
-          </Col>
-        ))}
+        <Skeleton loading={isLoading} active>
+          {posts.map(({ id, userId, title, body }) => (
+            <Col span={8} key={id}>
+              <Card
+                title={title}
+                extra={<Link to={`${ROUTES.POSTS_ROUTE}/${id}`}>More details..</Link>}
+                style={{ width: 'auto', height: '100%' }}>
+                <p>{`Author: ${users.find((user) => user.id === userId)?.name}`}</p>
+                <p>{body}</p>
+              </Card>
+            </Col>
+          ))}
+        </Skeleton>
       </Row>
     </ContainerContent>
   );
