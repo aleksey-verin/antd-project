@@ -9,8 +9,8 @@ const data = [
   'TypeScript',
   'Redux (@reduxjs/toolkit)',
   'React-router-dom (for routing)',
-  'React-hot-toast (for notifications)',
   'Ant Design (UI library)',
+  'React-hot-toast (for notifications)',
   'Vite (build tool)',
   'Eslint and Prettier'
 ];
