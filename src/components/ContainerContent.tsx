@@ -17,7 +17,6 @@ const ContainerContent: FC<ContainerContentProps> = ({ children, breadcrumbItems
       className="site-layout"
       style={{ padding: '0 50px', display: 'flex', flexDirection: 'column' }}>
       <Breadcrumb style={{ margin: '16px 0' }} items={breadcrumbItems} />
-
       <div style={{ padding: 24, minHeight: 380, background: colorBgContainer, flex: '1 0 auto' }}>
         {children}
       </div>

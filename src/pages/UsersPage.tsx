@@ -16,9 +16,7 @@ const breadcrumbItems = [
   }
 ];
 
-interface UsersPageProps {}
-
-const UsersPage: FC<UsersPageProps> = () => {
+const UsersPage: FC = () => {
   const { users, isLoading } = useSelector(selectorUsersSlice);
 
   useEffect(() => {
@@ -38,9 +36,8 @@ const UsersPage: FC<UsersPageProps> = () => {
                 title={name}
                 extra={<Link to={`${ROUTES.USERS_ROUTE}/${id}`}>More details..</Link>}
                 style={{ width: 'auto', height: '100%' }}>
-                <p>{`Username: ${username}`}</p>
-                <p>{`Email: ${email}`}</p>
-                {/* <p>{body}</p> */}
+                <p style={{ wordBreak: 'break-all' }}>{`Username: ${username}`}</p>
+                <p style={{ wordBreak: 'break-all' }}>{`Email: ${email}`}</p>
               </Card>
             </Col>
           ))}

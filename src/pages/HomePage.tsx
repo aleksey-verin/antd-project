@@ -21,9 +21,7 @@ const breadcrumbItems = [
   }
 ];
 
-interface HomePageProps {}
-
-const HomePage: FC<HomePageProps> = () => {
+const HomePage: FC = () => {
   return (
     <ContainerContent breadcrumbItems={breadcrumbItems}>
       <Title style={{ textAlign: 'center' }}>PICASSO Company Test Assignment</Title>

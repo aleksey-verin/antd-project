@@ -20,16 +20,11 @@ const breadcrumbItems = [
   }
 ];
 
-interface PostsPageProps {}
-
-const PostsPage: FC<PostsPageProps> = () => {
+const PostsPage: FC = () => {
   const dispatch = useAppDispatch();
   const { posts, isError, isLoading } = useSelector(selectorPostsSlice);
   const { users } = useSelector(selectorUsersSlice);
 
-  const handleSelect = (value: string) => {
-    dispatch(getPosts(value));
-  };
   useEffect(() => {
     toast('You on Posts Page!', {
       duration: 1000,
@@ -43,6 +38,10 @@ const PostsPage: FC<PostsPageProps> = () => {
     value: id,
     label: name
   }));
+
+  const handleSelect = (value: string) => {
+    dispatch(getPosts(value));
+  };
 
   return (
     <ContainerContent breadcrumbItems={breadcrumbItems}>

@@ -16,14 +16,9 @@ const breadcrumbItems = [
   }
 ];
 
-interface SettingsPageProps {}
-
-const SettingsPage: FC<SettingsPageProps> = () => {
+const SettingsPage: FC = () => {
   const dispatch = useAppDispatch();
   const { isThemeLight } = useSelector(selectorThemeSlice);
-
-  // const bla = false;
-
   const [themeSwitchValue, setThemeSwitchValue] = useState(isThemeLight);
 
   useEffect(() => {
@@ -55,10 +50,8 @@ const SettingsPage: FC<SettingsPageProps> = () => {
             checkedChildren="Light theme ☀️"
             unCheckedChildren="Dark theme 🌙"
             defaultChecked={themeSwitchValue}
-            // checked={themeSwitchValue}
           />
         </Descriptions.Item>
-        {/* <Descriptions.Item label="Theme mode">theme</Descriptions.Item> */}
       </Descriptions>
     </ContainerContent>
   );

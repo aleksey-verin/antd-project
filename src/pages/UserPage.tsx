@@ -19,9 +19,7 @@ const breadcrumbItems = [
   }
 ];
 
-interface UserPageProps {}
-
-const UserPage: FC<UserPageProps> = () => {
+const UserPage: FC = () => {
   const { id } = useParams();
 
   useEffect(() => {

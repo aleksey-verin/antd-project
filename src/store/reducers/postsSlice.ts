@@ -1,11 +1,7 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-// import { transformForecast } from '../../utils/helpers';
-// import { IForecastWeatherNormalized } from '../../types/forecastType';
-
 import { AppDispatch, IRootState } from '../store';
 import { IPost } from './types/postsTypes';
 import { getPostsUrl } from '../../utils/api-helpers';
-// import { createUrlWeather, urlWeatherTypes } from '../../utils/api-helpers';
 
 interface initialStateTypes {
   posts: IPost[];
@@ -29,7 +25,6 @@ export const getPosts = createAsyncThunk<
     state: IRootState;
   }
 >('getPosts', async (params, thunkAPI) => {
-  // const url = 'https://jsonplaceholder.typicode.com/posts';
   try {
     const url = getPostsUrl(params);
     const response = await fetch(url);

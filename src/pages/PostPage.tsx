@@ -30,9 +30,7 @@ const breadcrumbItems = [
   }
 ];
 
-interface PostPageProps {}
-
-const PostPage: FC<PostPageProps> = () => {
+const PostPage: FC = () => {
   const dispatch = useAppDispatch();
   const { posts } = useSelector(selectorPostsSlice);
   const { users } = useSelector(selectorUsersSlice);
@@ -51,22 +49,6 @@ const PostPage: FC<PostPageProps> = () => {
 
   const [form] = Form.useForm();
 
-  // const handleForm = (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   if (id) {
-  //     const sendComment = dispatch(postNewComment({ ...formValue, postId: +id }));
-
-  //     toast.promise(sendComment, {
-  //       loading: 'Loading',
-  //       success: () => {
-  //         setFormValue(defaultFormValue);
-  //         return 'Comment added successfully';
-  //       },
-  //       error: 'Error when adding a comment'
-  //     });
-  //   }
-  // };
-
   useEffect(() => {
     toast('You on Single Post Page!', {
       duration: 1000,
@@ -74,8 +56,6 @@ const PostPage: FC<PostPageProps> = () => {
     });
     window.scrollTo(0, 0);
   }, []);
-
-  console.log(comments);
 
   const onFinish = (values: { name: string; email: string; body: string }) => {
     if (id) {
@@ -130,7 +110,6 @@ const PostPage: FC<PostPageProps> = () => {
           style={{ maxWidth: 600, margin: '0 auto' }}
           initialValues={{ remember: true }}
           onFinish={onFinish}
-          // onFinishFailed={onFinishFailed}
           autoComplete="off">
           <Form.Item
             label="Your name"

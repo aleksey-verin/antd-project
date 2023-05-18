@@ -6,8 +6,6 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { ROUTES } from '../routes/routes';
 import { extractPath } from '../utils/helpers';
 
-interface ContainerNavbarProps {}
-
 const items: MenuProps['items'] = [
   {
     label: <NavLink to={ROUTES.HOME_ROUTE}>Home</NavLink>,
@@ -31,7 +29,7 @@ const items: MenuProps['items'] = [
   }
 ];
 
-const ContainerNavbar: FC<ContainerNavbarProps> = () => {
+const ContainerNavbar: FC = () => {
   const { pathname } = useLocation();
   const currentPath = extractPath(pathname);
 
