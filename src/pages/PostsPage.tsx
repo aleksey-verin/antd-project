@@ -1,13 +1,13 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { getPosts, selectorPostsSlice } from '../store/reducers/postsSlice';
 import { selectorUsersSlice } from '../store/reducers/usersSlice';
 import { useAppDispatch } from '../hooks/redux';
-import { Link, useLocation, useNavigate, useNavigation, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ROUTES } from '../routes/routes';
 import { toast } from 'react-hot-toast';
 import ContainerContent from '../components/ContainerContent';
-import { Button, Card, Col, Layout, Row, Select, Skeleton, Typography } from 'antd';
+import { Card, Col, Row, Select, Skeleton, Typography } from 'antd';
 
 const { Title } = Typography;
 

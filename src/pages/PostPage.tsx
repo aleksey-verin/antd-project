@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 import { ROUTES } from '../routes/routes';
 import { useSelector } from 'react-redux';

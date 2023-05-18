@@ -3,12 +3,7 @@ import { toast } from 'react-hot-toast';
 import ContainerContent from '../components/ContainerContent';
 import { Link } from 'react-router-dom';
 import { Descriptions, Switch } from 'antd';
-import useSelection from 'antd/es/table/hooks/useSelection';
-import themeSlice, {
-  selectorThemeSlice,
-  setThemeDark,
-  setThemeLight
-} from '../store/reducers/themeSlice';
+import { selectorThemeSlice, setThemeDark, setThemeLight } from '../store/reducers/themeSlice';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../hooks/redux';
 

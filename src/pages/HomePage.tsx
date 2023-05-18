@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import ContainerContent from '../components/ContainerContent';
-import { Col, Divider, List, Row, Space, Typography } from 'antd';
+import { Col, Divider, List, Row, Typography } from 'antd';
 
 const { Title } = Typography;
 

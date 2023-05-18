@@ -1,4 +1,4 @@
-import { Descriptions, Row, Skeleton } from 'antd';
+import { Descriptions, Skeleton } from 'antd';
 import { FC, useEffect } from 'react';
 import ContainerContent from '../components/ContainerContent';
 import { Link, Navigate, useParams } from 'react-router-dom';

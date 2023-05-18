@@ -2,7 +2,7 @@ import { MenuProps, Menu } from 'antd';
 import { UserOutlined, MailOutlined, SettingOutlined, HomeOutlined } from '@ant-design/icons';
 import { Header } from 'antd/es/layout/layout';
 import { FC } from 'react';
-import { NavLink, useLocation, useNavigation } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { ROUTES } from '../routes/routes';
 import { extractPath } from '../utils/helpers';
 
