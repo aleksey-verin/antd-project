@@ -26,7 +26,7 @@ const PostsPage: FC = () => {
   const { users } = useSelector(selectorUsersSlice);
 
   useEffect(() => {
-    toast('You on Posts Page!', {
+    toast("You're on Posts Page!", {
       duration: 1000,
       icon: '👏'
     });

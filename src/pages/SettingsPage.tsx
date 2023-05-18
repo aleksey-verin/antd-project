@@ -22,7 +22,7 @@ const SettingsPage: FC = () => {
   const [themeSwitchValue, setThemeSwitchValue] = useState(isThemeLight);
 
   useEffect(() => {
-    toast('You on Settings Page!', {
+    toast("You're on Settings Page!", {
       duration: 1000,
       icon: '👏'
     });

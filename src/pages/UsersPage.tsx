@@ -20,7 +20,7 @@ const UsersPage: FC = () => {
   const { users, isLoading } = useSelector(selectorUsersSlice);
 
   useEffect(() => {
-    toast('You on Users Page!', {
+    toast("You're on Users Page!", {
       duration: 1000,
       icon: '👏'
     });

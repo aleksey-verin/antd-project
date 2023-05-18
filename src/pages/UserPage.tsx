@@ -23,7 +23,7 @@ const UserPage: FC = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    toast('You on Single User Page!', {
+    toast("You're on Single User Page!", {
       duration: 1000,
       icon: '👏'
     });

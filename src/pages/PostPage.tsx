@@ -50,7 +50,7 @@ const PostPage: FC = () => {
   const [form] = Form.useForm();
 
   useEffect(() => {
-    toast('You on Single Post Page!', {
+    toast("You're on Single Post Page!", {
       duration: 1000,
       icon: '👏'
     });
