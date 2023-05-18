@@ -24,7 +24,7 @@
 
 ## Usage
 
-- Visit [Films App](https://aleksey-verin.github.io/testtask2)
+- Visit web-city [App with posts](https://aleksey-verin.github.io/antd-project)
 
 ## Videos and Screenshots
 
@@ -50,7 +50,7 @@ npm init
 1. Clone to local machine
 
 ```sh
-git clone https://github.com/aleksey-verin/tasttask2.git
+git clone https://github.com/aleksey-verin/antd-project.git
 ```
 
 2. Install NPM packages
