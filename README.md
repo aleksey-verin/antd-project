@@ -24,7 +24,7 @@
 
 ## Usage
 
-- Visit web-city [App with posts](https://aleksey-verin.github.io/antd-project)
+- Visit [App with posts](https://aleksey-verin.github.io/antd-project)
 
 ## Videos and Screenshots
 
